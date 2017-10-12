@@ -12,50 +12,30 @@
         <f7-pages>
           <f7-page>
             <f7-navbar v-if="$theme.material" title="Left Panel" sliding></f7-navbar>
-            <f7-block inner>
-              <p>Left panel content goes here</p>
-            </f7-block>
-            <f7-block-title>Load page in panel</f7-block-title>
+
+            <f7-block-title>TV Shows</f7-block-title>
             <f7-list>
-              <f7-list-item link="/about/" title="About"></f7-list-item>
-              <f7-list-item link="/form/" title="Form"></f7-list-item>
+              <f7-list-item link="/form/" title="TV Shows Home" link-view="#main-view" link-close-panel></f7-list-item>
+              <f7-list-item link="/categories-tv-shows/" title="TV Shows Categories" link-view="#main-view" link-close-panel></f7-list-item>
+              <f7-list-item link="/search-tv-shows/" title="Search TV Shows" link-view="#main-view" link-close-panel></f7-list-item>
             </f7-list>
-            <f7-block-title>Load page in main view</f7-block-title>
+            <f7-block-title>Movies</f7-block-title>
             <f7-list>
-              <f7-list-item link="/about/" title="About" link-view="#main-view" link-close-panel></f7-list-item>
-              <f7-list-item link="/form/" title="Form" link-view="#main-view" link-close-panel></f7-list-item>
+            <f7-list-item link="/" title="Movies Home" link-view="#main-view" link-close-panel></f7-list-item>
+             <f7-list-item link="/categories-movies/" title="Movie Categories" link-view="#main-view" link-close-panel></f7-list-item>
+              <f7-list-item link="/about/" title="Search Movies" link-view="#main-view" link-close-panel></f7-list-item>
             </f7-list>
+
           </f7-page>
         </f7-pages>
       </f7-view>
     </f7-panel>
 
-    <!-- Right Panel -->
-    <f7-panel right cover layout="dark">
-      <f7-view id="right-panel-view" navbar-through :dynamic-navbar="true">
-        <f7-navbar v-if="$theme.ios" title="Right Panel" sliding></f7-navbar>
-        <f7-pages>
-          <f7-page>
-            <f7-navbar v-if="$theme.material" title="Right Panel" sliding></f7-navbar>
-            <f7-block>
-              <p>Right panel content goes here</p>
-            </f7-block>
-            <f7-block-title>Load page in panel</f7-block-title>
-            <f7-list>
-              <f7-list-item link="/about/" title="About"></f7-list-item>
-              <f7-list-item link="/form/" title="Form"></f7-list-item>
-            </f7-list>
-            <f7-block-title>Load page in main view</f7-block-title>
-            <f7-list>
-              <f7-list-item link="/about/" title="About" link-view="#main-view" link-close-panel></f7-list-item>
-              <f7-list-item link="/form/" title="Form" link-view="#main-view" link-close-panel></f7-list-item>
-            </f7-list>
-          </f7-page>
-        </f7-pages>
-      </f7-view>
-    </f7-panel>
+
+
 
     <!-- Main Views -->
+   
     <f7-views>
       <f7-view id="main-view" navbar-through :dynamic-navbar="true" main>
         <!-- iOS Theme Navbar -->
@@ -63,11 +43,10 @@
           <f7-nav-left>
             <f7-link icon="icon-bars" open-panel="left"></f7-link>
           </f7-nav-left>
-          <f7-nav-center sliding>Framework7</f7-nav-center>
-          <f7-nav-right>
-            <f7-link icon="icon-bars" open-panel="right"></f7-link>
-          </f7-nav-right>
+          <f7-nav-center sliding>Movies</f7-nav-center>
+
         </f7-navbar>
+         
         <!-- Pages -->
         <f7-pages>
           <f7-page>
@@ -76,94 +55,129 @@
               <f7-nav-left>
                 <f7-link icon="icon-bars" open-panel="left"></f7-link>
               </f7-nav-left>
-              <f7-nav-center sliding>Framework7</f7-nav-center>
+              <f7-nav-center sliding>Movies</f7-nav-center>
               <f7-nav-right>
                 <f7-link icon="icon-bars" open-panel="right"></f7-link>
               </f7-nav-right>
             </f7-navbar>
-            <f7-block-title>Welcome to my App</f7-block-title>
-            <f7-block inner>
-              <p>Duis sed erat ac eros ultrices pharetra id ut tellus. Praesent rhoncus enim ornare ipsum aliquet ultricies. Pellentesque sodales erat quis elementum sagittis.</p>
-            </f7-block>
-            <f7-block-title>Navigation</f7-block-title>
-            <f7-list>
-              <f7-list-item link="/about/" title="About"></f7-list-item>
-              <f7-list-item link="/form/" title="Form"></f7-list-item>
-              <f7-list-item link="/dynamic-route/blog/45/post/125/?foo=bar#about" title="Dynamic Route"></f7-list-item>
-            </f7-list>
-            <f7-block-title>Side Panels</f7-block-title>
-            <f7-block>
-              <f7-grid>
-                <f7-col width="50">
-                  <f7-button open-panel="left">Left Panel</f7-button>
-                </f7-col>
-                <f7-col width="50">
-                  <f7-button open-panel="right">Right Panel</f7-button>
-                </f7-col>
-              </f7-grid>
-            </f7-block>
-            <f7-block-title>Modals</f7-block-title>
-            <f7-block>
-              <f7-grid>
-                <f7-col width="50">
-                  <f7-button open-popup="#popup">Popup</f7-button>
-                </f7-col>
-                <f7-col width="50">
-                  <f7-button open-login-screen="#login-screen">Login Screen</f7-button>
-                </f7-col>
-              </f7-grid>
-            </f7-block>
+           
+              <f7-list form>
+  <!-- Enables Smart Select behavior by adding "smart-select" prop -->
+            <f7-list-item smart-select title="Search"   smart-select-open-in='picker' >
+    <!-- Select with values inside -->
+              <select name="movie-select" v-on:change='getSelected' id='options'>
+                <option value="now_playing" selected>Now Playing</option>
+                <option value="popular">Popular Movies</option>
+                <option value="top_rated">Top Rated Movies</option>
+                <option value="upcoming">Upcoming Movies</option>
+              </select>
+            </f7-list-item>
+          </f7-list form>
+            <f7-list accordion>
+          <f7-list-item v-for="movie in movies" accordion-item v-bind:title="movie.original_title" >
+            <f7-accordion-content>
+              <f7-block>
+                <p>{{movie.title}}</p>
+                <p>Score: {{movie.vote_average}}</p>
+                <p>Release Date: {{movie.release_date}}</p>
+                <img v-if="movie.poster_path" style="height: 50%; width: 50%;" v-bind:src="'https://image.tmdb.org/t/p/w500/'+movie.poster_path"/>
+                <p>{{movie.overview}}</p>
+              </f7-block>
+            </f7-accordion-content>
+          </f7-list-item>
+          </f7-list>
+         <f7-buttons>
+          <f7-button big color='orange' style="margin-left:20px;" v-on:click="previousPage">Previous Page</f7-button>
+          <f7-button big color='orange' style="margin-right:20px;"v-on:click="nextPage">Next Page</f7-button>
+        </f7-buttons>
+           
+          
+          
+
           </f7-page>
+          
         </f7-pages>
+        
       </f7-view>
+         
     </f7-views>
+ 
 
-    <!-- Popup -->
-    <f7-popup id="popup">
-      <f7-view navbar-fixed>
-        <f7-pages>
-          <f7-page>
-            <f7-navbar title="Popup">
-              <f7-nav-right>
-                <f7-link close-popup>Close</f7-link>
-              </f7-nav-right>
-            </f7-navbar>
-            <f7-block>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, architecto. Cupiditate laudantium rem nesciunt numquam, ipsam. Voluptates omnis, a inventore atque ratione aliquam. Omnis iusto nemo quos ullam obcaecati, quod.</f7-block>
-          </f7-page>
-        </f7-pages>
-      </f7-view>
-    </f7-popup>
-
-    <!-- Login Screen -->
-    <f7-login-screen id="login-screen">
-      <f7-view>
-        <f7-pages>
-          <f7-page login-screen>
-            <f7-login-screen-title>Login</f7-login-screen-title>
-            <f7-list form>
-              <f7-list-item>
-                <f7-label>Username</f7-label>
-                <f7-input name="username" placeholder="Username" type="text"></f7-input>
-              </f7-list-item>
-              <f7-list-item>
-                <f7-label>Password</f7-label>
-                <f7-input name="password" type="password" placeholder="Password"></f7-input>
-              </f7-list-item>
-            </f7-list>
-            <f7-list>
-              <f7-list-button title="Sign In" close-login-screen></f7-list-button>
-              <f7-list-label>
-                <p>Click Sign In to close Login Screen</p>
-              </f7-list-label>
-            </f7-list>
-          </f7-page>
-        </f7-pages>
-      </f7-view>
-    </f7-login-screen>
 
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+          return {
+            movies: {},
+            select: 'now_playing',
+            page: 1,
+            genres: {},
+            movieGenres: {},
+          }
+      },
+  methods:
+        {
+          getMovies(selected){
+                this.$http.get('https://api.themoviedb.org/3/movie/'+selected+'?api_key=768582cb565a9ab2e51eabc518e7f184&language=en-US&page='+this.page)
+                .then(function(response) {
+                        this.movies = response.body.results;
+                        
+                    });
+            },
+            nextPage()
+            {
+              this.page= this.page + 1;
+              this.$http.get('https://api.themoviedb.org/3/movie/'+this.select+'?api_key=768582cb565a9ab2e51eabc518e7f184&language=en-US&page='+this.page)
+                .then(function(response) {
+                        this.movies = response.body.results;
+                     window.scrollTo(0, 0);
+                    });
+            },
+            previousPage()
+            {
+              if(this.page!= 1)
+              {
+              this.page= this.page - 1;
+              }
+            
+              this.$http.get('https://api.themoviedb.org/3/movie/'+this.select+'?api_key=768582cb565a9ab2e51eabc518e7f184&language=en-US&page='+this.page)
+                .then(function(response) {
+                        this.movies = response.body.results;
+                       window.scrollTo(0, 0);
+                    });
+            },
+           
+        getSelected: function(){  
+         this.select = document.getElementById('options').value;
+       
+        this.getMovies(this.select);
+        this.page = 1;
+        window.scrollTo(0, 0);
+    }
+
+  },
+
+  created: function () {
+    this.getMovies(this.select,this.page);
+
+  },
+  
+}
 </script>
+<style>
+.swiper-container {
+  height: 100%;
+}
+.swiper-slide {
+  background:#fff;
+}
+.swiper-slide span {
+  text-align:center;
+  display:block;
+  margin:20px;
+  font-size:21px;
+}
+</style>

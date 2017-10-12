@@ -13,8 +13,11 @@ import Routes from './routes.js'
 // Import App Component
 import App from './app.vue'
 
+import VueResource from 'vue-resource'
+
 // Init F7 Vue Plugin
 Vue.use(Framework7Vue)
+Vue.use(VueResource)
 
 // Init App
 new Vue({
